@@ -14,11 +14,12 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      "@components": resolve(__dirname, "app/components"),
-      "@assets": resolve(__dirname, "app/assets"),
-      "@css": resolve(__dirname, "app/assets/css"),
-      "@js": resolve(__dirname, "app/assets/js"),
-      "@helpers": resolve(__dirname, "app/assets/js/helpers"),
+      "@components": resolve(__dirname, "app/components/lookbook"),
+      "@assets": resolve(__dirname, "assets"),
+      "@css": resolve(__dirname, "assets/css"),
+      "@js": resolve(__dirname, "assets/js"),
+      "@helpers": resolve(__dirname, "assets/js/helpers"),
+      "@npm": resolve(__dirname, "node_modules"),
     },
   },
   css: {

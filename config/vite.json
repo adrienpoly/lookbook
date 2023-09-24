@@ -1,6 +1,6 @@
 {
   "all": {
-    "sourceCodeDir": "app/assets",
+    "sourceCodeDir": "assets",
     "watchAdditionalPaths": []
   },
   "development": {
