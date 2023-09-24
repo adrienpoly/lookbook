@@ -1,50 +1,157 @@
 module Lookbook
-  class BaseComponent < ViewComponent::Base
-    send(:include, Lookbook::Engine.routes.url_helpers) # YARD parsing workaround: https://github.com/lsegal/yard/issues/546
-    include Lookbook::UiElementsHelper
-    include Lookbook::ClassNamesHelper if Engine.runtime_context.rails_older_than?("6.1.0")
+  class BaseComponent < Lookbook::Component::Base
+    include ActionView::Helpers::TagHelper
+    include Lookbook::AlpineHelper
+    include Lookbook::ComponentHelper
 
-    def initialize(alpine_data: [], **html_attrs)
-      @alpine_data ||= alpine_data
-      @html_attrs = html_attrs
-      @html_attrs[:class] = {"#{@html_attrs[:class]}": true} if @html_attrs[:class].is_a? String
-    end
-
-    def render_component_tag(tag = :div, **attrs, &block)
-      merged_classes = class_names(attrs[:class], @html_attrs[:class])
-      merged_attrs = @html_attrs.except(:class).deep_merge(attrs.except(:class))
-
-      lookbook_tag tag, name: component_name,
-        **merged_attrs,
-        "x-data": prepare_alpine_data(merged_attrs[:"x-data"]),
-        class: merged_classes, &block
-    end
+    TAG_ATTRIBUTE_NAMES = %i[id class role data aria test_data x].freeze
 
     def component_name
-      self.class.name.chomp("::Component").delete_prefix("Lookbook::").underscore.tr("/", "_").tr("_", "-")
+      @_component_name ||= self.class.send(:component_name)
+    end
+
+    def tag_attrs
+      @_tag_attrs ||= {}
+    end
+
+    def accepts_options?
+      self.class.respond_to?(:accepts_option)
     end
 
     protected
 
-    attr_reader :alpine_data
-
-    def alpine_component
-      nil
+    def args
+      @_args ||= {}
     end
 
-    def alpine_encode(data)
-      if data.is_a? String
-        "'#{json_escape data}'"
-      else
-        json_escape data.to_json.tr("\"", "'")
+    def args=(new_args)
+      @_args = new_args
+    end
+
+    def component_args
+      @_component_args ||= {**args}
+    end
+
+    def tag_name(name = nil)
+      @tag_name = name if name
+      @tag_name ||= self.class.tag_name
+    end
+
+    def set_tag_attr(attr_name, value = "")
+      tag_attrs[attr_name] = value
+    end
+
+    def set_tag_data_attr(attr_name, value = "")
+      tag_attrs[:data] ||= {}
+      tag_attrs[:data][attr_name] = value
+    end
+
+    def call
+      component_tag(tag_name) do
+        content
       end
     end
 
-    def prepare_alpine_data(x_data = nil)
-      alpine_component_name = x_data || @html_attrs&.dig(:"x-data") || alpine_component
-      if alpine_component_name.present?
-        args = Array.wrap(alpine_data).compact
-        args.any? ? "#{alpine_component_name}(#{args.join(",")})" : alpine_component_name
+    def before_render
+      content unless content_evaluated?
+
+      tag_attrs[:data] ||= {}
+      tag_attrs[:data]["component"] = component_name
+
+      self.class.send(:run_callbacks, :before_render, nil, context: self)
+
+      if accepts_options?
+        accepted_options.validate_required!
+        accepted_options.flattened_attribute_values.each { tag_attrs[:data][_1] = _2 }
+      end
+
+      tag_attrs.compact!
+    end
+
+    def component_tag(tag_override = nil, **attrs)
+      merged_attrs = attrs.deep_merge(tag_attrs)
+      classes = class_names(attrs[:class], tag_attrs[:class])
+      merged_attrs[:class] = classes if classes.present?
+      Lookbook::Tag.new(tag_override || tag_name || :div, **merged_attrs, root: true)
+    end
+
+    private
+
+    def process_tag_attrs(args)
+      @_tag_attrs ||= {}
+      @_tag_attrs.merge!(args[:html].to_h)
+      @_tag_attrs.merge!(args.slice(*self.class.tag_attr_names))
+      @_component_args = args.except(*self.class.tag_attr_names, :html)
+    end
+
+    class << self
+      def new(**kwargs)
+        kwargs = run_callbacks(:before_initialize, kwargs, reduce: true)
+
+        obj = super(**kwargs)
+
+        if obj.instance_of?(Lookbook::Component::Base)
+          raise "`Lookbook::Component::Base` must be subclassed before use"
+        end
+
+        obj.instance_variable_set(:@_args, kwargs)
+        obj.send(:process_tag_attrs, kwargs)
+        obj.send(:merge_option_values, kwargs) if obj.accepts_options?
+        obj.class.send(:run_callbacks, :after_initialize, {}, context: obj) && obj
+      end
+
+      def tag_name(name = nil)
+        @_tag_name = name if name
+        @_tag_name
+      end
+
+      def tag_attr(*)
+        tag_attr_names.push(*)
+      end
+
+      def tag_attr_names
+        @_tag_attr_names ||= [*TAG_ATTRIBUTE_NAMES]
+      end
+
+      def before_render(method_name = nil, &callback)
+        callbacks[:before_render].push(method_name || callback)
+      end
+
+      def before_initialize(method_name = nil, &callback)
+        callbacks[:before_initialize].push(method_name || callback)
+      end
+
+      def after_initialize(method_name = nil, &callback)
+        callbacks[:after_initialize].push(method_name || callback)
+      end
+
+      def component_name(name = nil)
+        if name
+          @_component_name = name.to_s.tr("_", "-")
+        else
+          @_component_name ||= component_path.demodulize.underscore.tr("_", "-")
+        end
+      end
+
+      private
+
+      def component_path
+        name.to_s.delete_prefix("Lookbook::")
+      end
+
+      def run_callbacks(type, args, context: self, reduce: false)
+        callbacks[type].inject(args) do |memo, cb|
+          result = cb.is_a?(Symbol) ? context.send(cb, memo) : context.instance_exec(memo, &cb)
+          (reduce && result.is_a?(Hash) && args.is_a?(Hash)) ? result : memo
+        end
+      end
+
+      def callbacks
+        @_callbacks ||= {
+          before_render: [],
+          before_initialize: [],
+          after_initialize: []
+        }
       end
     end
   end

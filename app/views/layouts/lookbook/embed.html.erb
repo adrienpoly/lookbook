@@ -1,16 +1,13 @@
-<% content_for :body do %>
-  <div
-    id="app"
-    x-data="app"
-    x-cloak
-    x-on:popstate.window="handleNavigation"
-    x-on:click.document="hijax"
-    class="overflow-hidden">
-    
-    <%= render "lookbook/partials/user_styles" %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%= render "layouts/lookbook/head" %>
 
-    <%= content_for?(:main) ? yield(:main) : yield %>
-  </div>
-<% end %>
+  <title>Lookbook Embed</title>
+</head>
+<body>
 
-<%= render template: "layouts/lookbook/skeleton" %>
+  <%= yield %>
+
+</body>
+</html>

@@ -1,22 +1,17 @@
 Lookbook::Engine.routes.draw do
-  if Lookbook::Engine.websocket.mountable?
-    mount Lookbook::Engine.websocket.server => "/cable", :as => :cable
-  end
+  root "docs#index"
 
-  root to: "application#index", as: :lookbook_home
+  get "/previews", to: redirect("")
+  get "/previews/*path", to: "entities/previews#show"
 
-  get "/#{Lookbook.config.page_route}", to: "pages#index", as: :lookbook_page_index
-  get "/#{Lookbook.config.page_route}/*path", to: "pages#show", as: :lookbook_page
+  get "/pages", to: redirect("")
+  get "/pages/*path", to: "entities/pages#show"
 
-  get "/previews", to: "previews#index", as: :lookbook_previews
-  get "/preview/*path", to: "previews#show", as: :lookbook_preview
+  get "/inspect", to: redirect("")
+  get "/inspect/*path", to: "inspector#show"
 
-  get "/inspect/*path", to: "inspector#show", as: :lookbook_inspect
+  get "/embed", to: redirect("")
+  get "/embed/*path", to: "inspector#show"
 
-  if Lookbook::Engine.preview_embeds_allowed?
-    get "/embed", to: "embeds#lookup", as: :lookbook_embed_lookup
-    get "/embed/*path", to: "embeds#show", as: :lookbook_embed
-  end
-
-  get "/*path", to: "application#not_found", via: :all
+  get "/*path", to: "docs#show", via: :all
 end

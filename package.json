@@ -1,109 +1,35 @@
 {
   "name": "lookbook",
-  "version": "2.0.5",
+  "version": "3.0.0",
   "description": "A native development UI for ViewComponent",
-  "targets": {
-    "app": {
-      "source": [
-        "./assets/js/iframe.js",
-        "./assets/js/index.js",
-        "./assets/css/lookbook.css",
-        "./assets/css/themes/indigo.css",
-        "./assets/css/themes/blue.css",
-        "./assets/css/themes/zinc.css",
-        "./assets/css/themes/green.css",
-        "./assets/css/themes/rose.css"
-      ],
-      "distDir": "./public/lookbook-assets"
-    },
-    "embed": {
-      "source": "./assets/js/lookbook.js",
-      "distDir": "./public/lookbook-assets",
-      "outputFormat": "global",
-      "context": "browser",
-      "sourceMap": false
-    },
-    "embed-core": {
-      "source": "./assets/js/lookbook-core.js",
-      "distDir": "./public/lookbook-assets",
-      "outputFormat": "global",
-      "context": "browser",
-      "sourceMap": false
-    }
-  },
-  "alias": {
-    "@helpers/*": "./assets/js/helpers/$1",
-    "@lib/*": "./assets/js/lib/$1",
-    "@components/*": "./app/components/lookbook/$1"
-  },
-  "scripts": {
-    "dev": "npm run watch",
-    "watch": "npm run parcel:clean && concurrently npm:parcel:watch",
-    "build": "npm run parcel:clean && npm run themes:generate && npm run parcel:build",
-    "parcel:clean": "rm -rf .parcel-cache",
-    "parcel:watch": "parcel watch -p 5111",
-    "parcel:build": "parcel build --no-cache --no-optimize",
-    "themes:generate": "bin/generate-themes",
-    "themes:watch": "watch 'npm run themes:generate' ./theme --filter=./theme/watch.js",
-    "lint:fix": "bundle exec standardrb --fix && prettier --write .",
-    "release": "release-it --verbose",
-    "release:dry-run": "release-it --dry-run --verbose",
-    "prepare": "husky install"
-  },
+  "scripts": {},
   "author": "Mark Perkins",
   "license": "MIT",
   "dependencies": {
-    "@alpinejs/collapse": "^3.12.1",
-    "@alpinejs/morph": "^3.12.1",
-    "@alpinejs/persist": "^3.12.1",
-    "@rails/actioncable": "^6.1.4",
-    "@ryangjchandler/alpine-tooltip": "^1.2.0",
-    "@tailwindcss/forms": "^0.5.6",
-    "@tailwindcss/typography": "^0.5.8",
-    "alpinejs": "^3.12.1",
-    "autoprefixer": "^10.4.13",
-    "iframe-resizer": "^4.3.2",
-    "js-cookie": "^3.0.5",
-    "loglevel": "^1.8.1",
-    "loglevel-plugin-prefix": "^0.8.4",
-    "lucide-static": "^0.274.0",
-    "split-grid": "^1.0.11",
-    "svgo": "^2.8.0",
-    "tailwindcss": "^3.3.3",
-    "throttle-debounce": "^5.0.0",
-    "tippy.js": "^6.3.2"
+    "@alpinejs/morph": "^3.13.0",
+    "alpinejs": "^3.13.0",
+    "container-query-polyfill": "^1.0.2",
+    "lodash": "^4.17.21",
+    "tailwindcss": "^3.3.3"
   },
   "devDependencies": {
-    "@parcel/resolver-glob": "^2.8.0",
-    "commitizen": "^4.2.5",
-    "concurrently": "^8.2.1",
-    "cz-conventional-changelog": "^3.3.0",
+    "autoprefixer": "^10.4.16",
     "eslint": "^8.40.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.25.2",
     "husky": "^8.0.2",
     "lint-staged": "^13.2.2",
-    "parcel": "^2.8.0",
-    "postcss": "^8.4.23",
-    "postcss-import": "^15.0.0",
-    "postcss-import-ext-glob": "^2.0.1",
     "prettier": "2.8.8",
     "release-it": "^16.1.5",
-    "watch": "^0.13.0"
+    "vite": "^4.4.9",
+    "vite-plugin-full-reload": "^1.0.5",
+    "vite-plugin-ruby": "^3.2.2"
   },
-  "lint-staged": {
-    "!(docs/**/*)": [
-      "prettier --write --ignore-unknown",
-      "npm run build"
-    ],
-    "**/*.rb": [
-      "bundle exec standardrb --fix"
-    ]
-  },
+  "lint-staged": {},
   "release-it": {
     "git": {
-      "commitMessage": "chore(${branchName}) release ${version}"
+      "commitMessage": "release ${version}"
     },
     "github": {
       "release": true,
@@ -113,23 +39,10 @@
       "publish": false
     },
     "hooks": {
-      "before:init": [
-        "npm install",
-        "bundle install",
-        "rake spec"
-      ],
-      "after:bump": [
-        "bundle exec appraisal install",
-        "npm run lint:fix",
-        "npm run build"
-      ],
-      "after:version:bump": "./bin/bump-version ${version} && bundle",
-      "after:release": "./bin/release ${version}"
-    }
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
+      "before:init": [],
+      "after:bump": [],
+      "after:version:bump": "",
+      "after:release": ""
     }
   }
 }

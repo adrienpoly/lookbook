@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-cd docs
-bundle
-npm install
-bin/bridgetown start
