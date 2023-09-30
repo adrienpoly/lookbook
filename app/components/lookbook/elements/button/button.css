@@ -1,0 +1,88 @@
+@layer components {
+  [data-component="button"] {
+    @apply flex transition-colors w-auto rounded;
+    width: min-content;
+
+    .button-inner {
+      @apply flex items-center text-center leading-tight mx-auto;
+      width: fit-content;
+    }
+
+    .button-label {
+      @apply hidden; /* not supported yet */
+    }
+
+    /* Themes */
+
+    &[data-theme="default"] {
+      @apply button-default-theme;
+    }
+
+    &[data-theme="inverted"] {
+      @apply button-inverted-theme;
+    }
+
+    /* Disabled */
+
+    &[disabled] {
+      @apply opacity-50;
+    }
+
+    /* Sizes */
+
+    &[data-size="xs"] .button-inner {
+      padding: 4px;
+    }
+
+    &[data-size="sm"] .button-inner {
+      padding: 6px;
+    }
+
+    &[data-size="md"] {
+      .button-inner {
+        padding: 8px;
+      }
+    }
+
+    &[data-size="lg"],
+    &[data-size="xl"] {
+      .button-inner {
+        padding: 6px;
+      }
+    }
+  }
+}
+
+@layer utilities {
+  .button-default-theme {
+    background-color: var(--lookbook-default-button-bg);
+    color: var(--lookbook-default-button-text);
+
+    &:hover {
+      background-color: var(--lookbook-default-button-bg-hover);
+      color: var(--lookbook-default-button-text-hover);
+    }
+
+    &:active {
+      background-color: var(--lookbook-default-button-bg-active);
+      color: var(--lookbook-default-button-text-active);
+    }
+  }
+
+  .button-inverted-theme {
+    @apply opacity-80 hover:opacity-100;
+
+    background-color: var(--lookbook-inverted-button-bg);
+    color: var(--lookbook-inverted-button-text);
+
+    &:hover {
+      background-color: var(--lookbook-inverted-button-bg-hover);
+      color: var(--lookbook-inverted-button-text-hover);
+    }
+
+    &:active {
+      background-color: var(--lookbook-inverted-button-bg-active);
+      color: var(--lookbook-inverted-button-text-active);
+    }
+  }
+}

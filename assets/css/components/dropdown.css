@@ -1,0 +1,17 @@
+@layer components {
+  /* Dropdown theme */
+  .tippy-box[data-theme="dropdown"] {
+    @apply rounded-md shadow-md;
+    background-color: var(--lookbook-dropdown-bg);
+    color: var(--lookbook-dropdown-text);
+
+    .tippy-content {
+      @apply px-4 py-4 border;
+      border-color: var(--lookbook-dropdown-border);
+    }
+
+    .tippy-svg-arrow {
+      @apply hidden;
+    }
+  }
+}

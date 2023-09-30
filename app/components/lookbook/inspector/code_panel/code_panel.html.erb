@@ -1,0 +1,9 @@
+<%= book_panel(**args, x: {data: "codePanel"}, data: {panel_type: "code"}) do |panel| %>
+  <% panel.with_action(icon: :wrap_text, click: "toggleWrap") do %>
+    Toggle line wrap
+  <% end %>
+  
+  <div class="code-panel-content">
+    <%= code %>
+  </div>
+<% end %>

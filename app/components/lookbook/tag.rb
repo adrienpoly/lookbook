@@ -22,7 +22,7 @@ module Lookbook
       if SELF_CLOSING_TAGS.include?(@tag_name)
         tag(tag_name, tag_attrs)
       else
-        content_tag(tag_name, content, tag_attrs, false)
+        content_tag(tag_name, content, tag_attrs)
       end
     end
 

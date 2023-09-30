@@ -1,4 +1,4 @@
-import { isNumeric } from "lodash";
+import { isNumber } from "lodash";
 
 function getHiddenElementDimensions(el, display = "block") {
   let size;
@@ -22,7 +22,7 @@ function castAttributeValue(value) {
     return true;
   }
 
-  if (isNumeric(value)) {
+  if (isNumber(value)) {
     return parseInt(value, 10);
   }
 

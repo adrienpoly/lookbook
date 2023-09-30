@@ -24,6 +24,10 @@ module Lookbook
         attrs[:data] = "" # Add empty x-data attribute if none has been specified
       end
 
+      if attrs[:options] == true
+        attrs[:options] = "options"
+      end
+
       attrs.transform_values! { (_1 == true) ? "" : _1 } # convert boolean x-attributes
 
       # prefix attributes where needed

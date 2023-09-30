@@ -1,0 +1,13 @@
+@layer components {
+  [data-component="panel"][data-panel-type="code"] {
+    @apply relative h-full;
+
+    .code-panel-content {
+      @apply absolute inset-0;
+
+      [data-component="code"] {
+        @apply overflow-auto h-full;
+      }
+    }
+  }
+}

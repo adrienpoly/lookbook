@@ -1,0 +1,51 @@
+[data-component="toolbar"] {
+  @apply flex items-center w-full border;
+  color: var(--lookbook-toolbar-text);
+  border-color: var(--lookbook-toolbar-border);
+
+  [data-component="toolbar-section"] {
+    &[data-align="start"] + [data-align="end"],
+    &[data-align="end"]:first-child {
+      @apply ml-auto;
+    }
+  }
+
+  &[data-theme="primary"] {
+    @apply bg-gray-50;
+    /* background: var(--lookbook-toolbar-bg); */
+    border-color: var(--lookbook-toolbar-border);
+
+    [data-component="toolbar-section"][data-theme="dark"] {
+      @apply bg-gray-100;
+    }
+  }
+
+  &[data-theme="secondary"] {
+    @apply bg-white;
+    /* background: var(--lookbook-toolbar-bg); */
+    border-color: var(--lookbook-toolbar-border);
+  }
+
+  &[data-theme="accent"] {
+    @apply antialiased border-none;
+
+    color: var(--lookbook-toolbar-text-accent);
+    background: var(--lookbook-toolbar-bg-accent);
+
+    [data-component="button"] {
+      @apply button-inverted-theme;
+    }
+
+    [data-component="toolbar-section-divider"] {
+      background: var(--lookbook-toolbar-border-accent);
+    }
+  }
+
+  &[data-size="sm"] {
+    @apply h-6;
+  }
+
+  &[data-size="md"] {
+    @apply h-10;
+  }
+}

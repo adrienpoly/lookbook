@@ -1,0 +1,29 @@
+:root {
+  /* Base */
+
+  --lookbook-white: #ffffff;
+  --lookbook-black: #000000;
+  --lookbook-transparent: transparent;
+
+  --lookbook-base-50: #fafafa;
+  --lookbook-base-100: #f4f4f5;
+  --lookbook-base-200: #e4e4e7;
+  --lookbook-base-300: #d4d4d8;
+  --lookbook-base-400: #a1a1aa;
+  --lookbook-base-500: #71717a;
+  --lookbook-base-600: #52525b;
+  --lookbook-base-700: #3f3f46;
+  --lookbook-base-800: #27272a;
+  --lookbook-base-900: #18181b;
+
+  --lookbook-accent-50: #eef2ff;
+  --lookbook-accent-100: #e0e7ff;
+  --lookbook-accent-200: #c7d2fe;
+  --lookbook-accent-300: #a5b4fc;
+  --lookbook-accent-400: #818cf8;
+  --lookbook-accent-500: #6366f1;
+  --lookbook-accent-600: #4f46e5;
+  --lookbook-accent-700: #4338ca;
+  --lookbook-accent-800: #3730a3;
+  --lookbook-accent-900: #312e81;
+}

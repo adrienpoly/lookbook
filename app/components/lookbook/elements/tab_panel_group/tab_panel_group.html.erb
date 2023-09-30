@@ -1,0 +1,8 @@
+<%= render component_tag(
+  x: { data: "tabPanelGroup", bind: "root" },
+  html: {role: "tabpanels"}
+) do %>
+  <% panels.each do |panel| %>
+    <%= panel %>
+  <% end %>
+<% end %>

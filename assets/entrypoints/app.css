@@ -1,3 +1,15 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+@import "../css/themes/light.css";
+@import "../css/themes/dark.css";
+
+@import "../css/lib/tippy.css";
+
+@import "../css/components/dropdown.css";
+@import "../css/components/tooltip.css";
+
+@import "../css/base.css";
+
+@import "../css/components.css";

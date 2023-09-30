@@ -1,0 +1,7 @@
+<%= render component_tag(x: {data: "buttonGroup"}) do %>
+  <div x-ref="buttons" class="group-buttons">
+    <% buttons.each do |button| %>
+      <%= button %>
+    <% end %>
+  </div>
+<% end %>

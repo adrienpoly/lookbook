@@ -1,0 +1,5 @@
+@layer components {
+  [data-component="panel"][data-panel-type="preview"] {
+    @apply relative h-full;
+  }
+}

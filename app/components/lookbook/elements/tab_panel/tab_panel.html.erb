@@ -1,0 +1,10 @@
+<%= render component_tag(:section,
+  role: "tabpanel",
+  x: {
+    data: "tabPanel",
+    show: "isSelected", 
+    cloak: true   
+  }
+) do %>
+  <%= content %>
+<% end %>

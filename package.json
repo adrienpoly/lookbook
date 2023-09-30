@@ -3,18 +3,21 @@
   "version": "3.0.0",
   "description": "A native development UI for ViewComponent",
   "scripts": {
-    "icons": "node lib/scripts/copy_icons.mjs"
+    "icons:update": "node lib/scripts/copy_icons.mjs"
   },
   "author": "Mark Perkins",
   "license": "MIT",
   "dependencies": {
     "@alpinejs/morph": "^3.13.0",
     "@tailwindcss/container-queries": "^0.1.1",
+    "ace-builds": "^1.28.0",
     "alpinejs": "^3.13.0",
     "container-query-polyfill": "^1.0.2",
     "lodash": "^4.17.21",
     "lucide-static": "^0.279.0",
-    "tailwindcss": "^3.3.3"
+    "split-grid": "^1.0.11",
+    "tailwindcss": "^3.3.3",
+    "tippy.js": "^6.3.7"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.16",
@@ -24,6 +27,7 @@
     "eslint-plugin-import": "^2.25.2",
     "husky": "^8.0.2",
     "lint-staged": "^13.2.2",
+    "postcss-import-ext-glob": "^2.1.1",
     "prettier": "2.8.8",
     "release-it": "^16.1.5",
     "svgo": "^3.0.2",

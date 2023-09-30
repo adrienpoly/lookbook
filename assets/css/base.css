@@ -1,0 +1,10 @@
+@layer base {
+  html,
+  body {
+    @apply h-screen w-screen overflow-hidden;
+  }
+
+  [x-cloak] {
+    display: none !important;
+  }
+}

@@ -1,0 +1,55 @@
+@layer components {
+  [data-component="tab"] {
+    @apply text-sm whitespace-nowrap;
+    background-color: var(--lookbook-tab-bg);
+    color: var(--lookbook-tab-text);
+    border-color: var(--lookbook-tab-border);
+
+    &.tab-selected {
+      color: var(--lookbook-tab-text-selected);
+      border-color: var(--lookbook-tab-border-selected);
+    }
+
+    &:hover:not(.tab-selected) {
+      color: var(--lookbook-tab-text-hover);
+      border-color: var(--lookbook-tab-border-hover);
+    }
+
+    &:active:not(.tab-selected) {
+      color: var(--lookbook-tab-text-active);
+      border-color: var(--lookbook-tab-border-active);
+    }
+
+    .tab-icon {
+      @apply -ml-1 opacity-50;
+    }
+
+    .tab-content {
+      @apply flex items-center gap-x-2;
+    }
+
+    &[data-orientation="horizontal"] {
+      @apply tab-horizontal-orientation;
+    }
+
+    &[data-orientation="vertical"] {
+      @apply tab-vertical-orientation;
+    }
+
+    /* Disabled */
+
+    &[disabled] {
+      @apply opacity-70;
+    }
+  }
+}
+
+@layer utilities {
+  .tab-horizontal-orientation {
+    @apply px-2 pb-[8px] pt-[10px] border-b-2;
+  }
+
+  .tab-vertical-orientation {
+    @apply px-4 py-2 border-l-2 w-full;
+  }
+}

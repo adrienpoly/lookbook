@@ -1,0 +1,8 @@
+<%= render component_tag(x: {data: "paneGroup", bind: "root"}) do %>
+  <% panes.each_with_index do |pane, i| %>
+    <%= pane %>
+    <% unless pane == panes.last %>
+      <%= render Lookbook::PaneGroupDivider.new(name: "gutter-#{i}", x: {init: "registerItem"}) %>
+    <% end %>
+  <% end %>
+<% end %>

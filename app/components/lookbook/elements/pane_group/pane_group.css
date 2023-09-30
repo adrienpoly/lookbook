@@ -1,0 +1,17 @@
+@layer components {
+  [data-component="pane-group"] {
+    @apply h-full w-full grid;
+
+    &[data-layout="rows"] {
+      grid-template-columns: auto;
+    }
+
+    &[data-layout="columns"] {
+      grid-template-rows: auto;
+    }
+
+    .pane-group-hidden {
+      @apply hidden;
+    }
+  }
+}

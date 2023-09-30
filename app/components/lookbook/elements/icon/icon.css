@@ -1,48 +1,50 @@
-[data-component="icon"] {
-  @apply flex flex-none w-6 h-6 text-current;
+@layer components {
+  [data-component="icon"] {
+    @apply flex flex-none w-6 h-6 text-current;
 
-  svg {
-    @apply w-full h-full;
+    svg {
+      @apply w-full h-full;
 
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
 
-  /* Styles */
+    /* Styles */
 
-  &:not([data-style="fill"]) svg {
-    @apply fill-none stroke-2 stroke-current;
-  }
+    &:not([data-style="fill"]) svg {
+      @apply fill-none stroke-2 stroke-current;
+    }
 
-  &[data-style="fill"] svg {
-    @apply fill-current;
-  }
+    &[data-style="fill"] svg {
+      @apply fill-current;
+    }
 
-  /* Sizes */
+    /* Sizes */
 
-  &[data-size="xs"] {
-    @apply w-3 h-3;
-  }
+    &[data-size="xs"] {
+      @apply w-3 h-3;
+    }
 
-  &[data-size="sm"] {
-    @apply w-3.5 h-3.5;
-  }
+    &[data-size="sm"] {
+      @apply w-3.5 h-3.5;
+    }
 
-  &[data-size="md"] {
-    @apply w-4 h-4;
-  }
+    &[data-size="md"] {
+      @apply w-4 h-4;
+    }
 
-  &[data-size="lg"] {
-    @apply w-6 h-6;
-  }
+    &[data-size="lg"] {
+      @apply w-6 h-6;
+    }
 
-  &[data-size="xl"] {
-    @apply w-7 h-7;
-  }
+    &[data-size="xl"] {
+      @apply w-7 h-7;
+    }
 
-  /* Motion */
+    /* Motion */
 
-  &[data-spin="true"] svg {
-    @apply animate-spin;
+    &[data-spin="true"] svg {
+      @apply animate-spin;
+    }
   }
 }

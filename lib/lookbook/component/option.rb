@@ -1,6 +1,8 @@
 module Lookbook
   module Component
     class Option
+      include Item
+
       attr_accessor :default
       attr_reader :from, :name
 
@@ -12,22 +14,6 @@ module Lookbook
         @private = kwargs.fetch(:private, false)
         @default = kwargs.fetch(:default, nil)
         @alias = kwargs.fetch(:alias, nil)
-      end
-
-      def alias
-        @alias || name
-      end
-
-      def html_alias
-        self.alias.to_s.tr("_", "-")
-      end
-
-      def private?
-        @private == true
-      end
-
-      def public?
-        !private?
       end
 
       def validate_required!

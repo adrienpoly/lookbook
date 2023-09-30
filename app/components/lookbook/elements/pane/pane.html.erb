@@ -1,0 +1,21 @@
+<%= render component_tag(:section,
+  class: {
+    "with-toolbar": toolbar?
+  },
+  x: {
+    data: "pane",
+    bind: "root"
+  }) do %>
+  <% if toolbar? %>
+    <header class="pane-header">
+      <%= toolbar %>
+    </header>
+  <% end %>
+  <div class="pane-content">
+    <% if panel_group? %>
+      <%= panel_group %>
+    <% else %>
+      <%= content %>
+    <% end %>
+  </div>
+<% end %>

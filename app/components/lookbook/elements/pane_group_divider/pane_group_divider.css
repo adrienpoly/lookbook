@@ -1,0 +1,26 @@
+@layer components {
+  [data-component="pane-group-divider"] {
+    @apply relative;
+    background-color: var(--lookbook-pane-divider);
+
+    .pane-group-divider-handle {
+      @apply absolute;
+    }
+
+    [data-component="pane-group"][data-layout="rows"] > & {
+      .pane-group-divider-handle {
+        @apply w-full left-0 right-0 cursor-ns-resize;
+        height: 11px;
+        top: -5px;
+      }
+    }
+
+    [data-component="pane-group"][data-layout="columns"] > & {
+      .pane-group-divider-handle {
+        @apply h-full top-0 bottom-0 cursor-ew-resize;
+        width: 11px;
+        left: -5px;
+      }
+    }
+  }
+}

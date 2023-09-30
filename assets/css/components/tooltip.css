@@ -1,0 +1,16 @@
+@layer components {
+  /* Tooltip theme */
+  .tippy-box[data-theme="tooltip"] {
+    @apply rounded shadow-md;
+    background-color: var(--lookbook-tooltip-bg);
+    color: var(--lookbook-tooltip-text);
+
+    .tippy-content {
+      @apply text-xs px-2 py-1 truncate max-w-[240px];
+    }
+
+    .tippy-svg-arrow {
+      fill: var(--lookbook-tooltip-bg);
+    }
+  }
+}

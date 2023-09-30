@@ -1,0 +1,11 @@
+<%= render component_tag(:section, x: {data: "header"}) do %>
+  <%= render Lookbook::Toolbar.new(theme: :accent) do |toolbar| %>
+    <% toolbar.with_section do |section| %>
+      <% section.with_html do %>
+        <div class="header-branding">
+          <%= branding %>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

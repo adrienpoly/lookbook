@@ -1,0 +1,27 @@
+@layer components {
+  [data-component="tab-group"] {
+    &[data-orientation="horizontal"] {
+      .tabgroup-tabs {
+        @apply flex items-center gap-x-4;
+
+        [data-component="tab"] {
+          @apply tab-horizontal-orientation;
+        }
+      }
+    }
+
+    &[data-orientation="vertical"] {
+      .tabgroup-tabs {
+        @apply flex flex-col items-center w-full;
+
+        [data-component="tab"] {
+          @apply tab-vertical-orientation;
+        }
+      }
+
+      .tabgroup-tab {
+        @apply w-full;
+      }
+    }
+  }
+}

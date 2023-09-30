@@ -1,0 +1,7 @@
+@layer components {
+  [data-component="button-group"] {
+    .group-buttons {
+      @apply flex items-center;
+    }
+  }
+}

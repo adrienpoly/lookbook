@@ -1,0 +1,5 @@
+@layer components {
+  [data-component="tab-panel"] {
+    @apply h-full;
+  }
+}

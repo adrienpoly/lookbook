@@ -1,0 +1,15 @@
+<%= render component_tag(:button,
+  role: "tab",
+  type: "button",
+  x: {
+    data: "tab",
+    bind: "root",
+  }
+) do %>
+  <div class="tab-content">
+    <%= icon %>
+    <div class="tab-label">
+      <%= content %>
+    </div>
+  </div>
+<% end %>

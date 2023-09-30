@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <%= render "layouts/lookbook/head" %>
 
@@ -9,11 +9,21 @@
 
   <title>Lookbook</title>
 </head>
-<body>
+<body>  
+  <%= render Lookbook::App.new do |app| %>
+    <% app.with_header do |header| %>
+      <% header.with_branding do %>
+        Lookbook
+      <% end %>
+    <% end %>
 
-<%= look_icon :smile %>
+    <%= app.with_sidebar do %>
+      <strong>sidebar</strong>
+    <% end %>
 
-  <%= yield %>
-
+    <%= app.with_main do %>
+      <%= yield %>
+    <% end %>
+  <% end %>
 </body>
 </html>

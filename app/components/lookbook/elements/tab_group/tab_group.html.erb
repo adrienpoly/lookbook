@@ -1,0 +1,11 @@
+<%= render component_tag(x: {data: "tabGroup", options: true}) do %>
+  <% if tabs.any? %>
+    <ol class="tabgroup-tabs" x-ref="tablist" role="tablist">
+      <% tabs.each do |tab| %>
+        <li class="tabgroup-tab">
+          <%= tab %>
+        </li>
+      <% end %>
+    </ol>
+  <% end %>
+<% end %>

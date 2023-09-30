@@ -1,0 +1,19 @@
+@layer components {
+  [data-component="pane"] {
+    @apply h-full w-full grid grid-cols-1;
+    grid-template-rows: 1fr;
+    background-color: var(--lookbook-pane-bg);
+
+    &.with-toolbar {
+      grid-template-rows: min-content 1fr;
+    }
+
+    [data-component="toolbar"] {
+      @apply border-t-0 border-l-0 border-r-0;
+    }
+
+    .pane-header > [data-component="tab-panel-group"] {
+      @apply h-full w-full;
+    }
+  }
+}

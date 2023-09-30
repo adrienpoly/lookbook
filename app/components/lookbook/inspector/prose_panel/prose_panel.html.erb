@@ -1,0 +1,9 @@
+<%= book_panel(**args, x: {data: "prosePanel"}, data: {panel_type: "prose"}) do |panel| %>
+  <% panel.with_action(icon: :copy, click: "copyContent") do %>
+    Copy to clipboard
+  <% end %>
+
+  <div class="prose-panel-content" x-ref="content">
+    <%= content %>
+  </div>
+<% end %>

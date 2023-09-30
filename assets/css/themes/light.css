@@ -1,0 +1,62 @@
+@import "../config/tokens.css";
+
+:root,
+html[data-theme="light"] {
+  /* Generic */
+
+  --lookbook-text: var(--lookbook-base-800);
+  --lookbook-text-inverted: var(--lookbook-white);
+
+  /* Buttons */
+
+  --lookbook-default-button-bg: var(--lookbook-transparent);
+  --lookbook-default-button-bg-hover: var(--lookbook-base-100);
+  --lookbook-default-button-bg-active: var(--lookbook-accent-50);
+  --lookbook-default-button-text: var(--lookbook-base-500);
+  --lookbook-default-button-text-hover: var(--lookbook-base-700);
+  --lookbook-default-button-text-active: var(--lookbook-accent-700);
+
+  --lookbook-inverted-button-bg: var(--lookbook-transparent);
+  --lookbook-inverted-button-bg-hover: var(--lookbook-transparent);
+  --lookbook-inverted-button-bg-active: var(--lookbook-transparent);
+  --lookbook-inverted-button-text: var(--lookbook-white);
+  --lookbook-inverted-button-text-hover: var(--lookbook-white);
+  --lookbook-inverted-button-text-active: var(--lookbook-white);
+
+  /* Tabs */
+
+  --lookbook-tab-bg: var(--lookbook-bg-base-1);
+  --lookbook-tab-text: var(--lookbook-base-600);
+  --lookbook-tab-text-hover: var(--lookbook-text);
+  --lookbook-tab-text-active: var(--lookbook-text);
+  --lookbook-tab-text-selected: var(--lookbook-text);
+  --lookbook-tab-border: var(--lookbook-transparent);
+  --lookbook-tab-border-hover: var(--lookbook-base-300);
+  --lookbook-tab-border-active: var(--lookbook-base-300);
+  --lookbook-tab-border-selected: var(--lookbook-accent-500);
+
+  /* Tooltips */
+
+  --lookbook-tooltip-bg: var(--lookbook-base-900);
+  --lookbook-tooltip-text: var(--lookbook-base-50);
+
+  /* Dropdowns */
+
+  --lookbook-dropdown-bg: var(--lookbook-white);
+  --lookbook-dropdown-text: var(--lookbook-text);
+  --lookbook-dropdown-border: var(--lookbook-base-200);
+
+  /* Toolbars */
+
+  --lookbook-toolbar-bg: var(--lookbook-white);
+  --lookbook-toolbar-text: var(--lookbook-text);
+  --lookbook-toolbar-border: var(--lookbook-base-300);
+
+  --lookbook-toolbar-bg-accent: var(--lookbook-accent-600);
+  --lookbook-toolbar-text-accent: var(--lookbook-text-inverted);
+  --lookbook-toolbar-border-accent: rgba(255, 255, 255, 0.3);
+
+  /* Panes */
+
+  --lookbook-pane-divider: var(--lookbook-base-300);
+}

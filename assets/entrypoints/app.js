@@ -1,4 +1,2 @@
-import.meta.globEager("./app.css");
-import.meta.globEager("@components/**/*.css");
-
+import "container-query-polyfill";
 import "@js/alpine/setup";

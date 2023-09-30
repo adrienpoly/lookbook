@@ -1,0 +1,4 @@
+@import "../config/tokens.css";
+
+html[data-theme="dark"] {
+}

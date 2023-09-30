@@ -1,0 +1,4 @@
+[data-component="app"] {
+  @apply h-screen w-screen grid;
+  grid-template-rows: min-content 1fr;
+}

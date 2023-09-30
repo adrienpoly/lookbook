@@ -1,0 +1,54 @@
+@layer components {
+  [data-component="code"] {
+    .code-source {
+      @apply hidden;
+    }
+
+    .code-editor {
+      @apply h-full;
+    }
+
+    .cm-editor {
+      @apply h-full text-[13px];
+
+      &.cm-focused {
+        @apply outline-none;
+      }
+
+      .cm-line {
+        @apply whitespace-nowrap pt-px pb-px;
+      }
+
+      .cm-cursor {
+        @apply !hidden;
+      }
+
+      .cm-scroller {
+        @apply overflow-auto;
+      }
+
+      .cm-gutters {
+        @apply border-dashed;
+      }
+
+      .cm-lineNumbers {
+        .cm-gutterElement {
+          padding-left: 9px;
+          padding-right: 6px;
+        }
+      }
+
+      .cm-activeLine {
+        background: transparent;
+      }
+    }
+
+    &[data-wrap="true"] {
+      .cm-editor {
+        .cm-line {
+          @apply whitespace-pre-wrap;
+        }
+      }
+    }
+  }
+}

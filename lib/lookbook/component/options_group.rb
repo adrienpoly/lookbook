@@ -1,6 +1,8 @@
 module Lookbook
   module Component
     class OptionsGroup
+      include Item
+
       attr_accessor :shorthand
       attr_reader :name, :items
 
@@ -63,8 +65,8 @@ module Lookbook
         end
       end
 
-      def option_value_equals?(*, check)
-        get_option_value(*) == check
+      def option_value_equals?(*args, check)
+        get_option_value(*args) == check
       end
 
       def merge_option_values(*args, values, overwrite: true)
@@ -103,6 +105,10 @@ module Lookbook
         items.map(&:validate_required!)
       end
 
+      def option_names
+        items.map(&:name)
+      end
+
       def values
         items.map do |item|
           [item.name, item.is_a?(Option) ? item.value : item.values]
@@ -124,22 +130,6 @@ module Lookbook
         end.to_h
       end
 
-      def alias
-        @alias || name
-      end
-
-      def html_alias
-        self.alias.to_s.tr("_", "-")
-      end
-
-      def private?
-        @private == true
-      end
-
-      def public?
-        !private?
-      end
-
       def clone
         Marshal.load(Marshal.dump(self))
       end
@@ -155,7 +145,7 @@ module Lookbook
       # All groups in this group
       # Does not include groups in subgroups.
       def groups
-        items.filter { _1.is_a?(OptionsGroup) }
+        items.filter { _1.is_a?(Group) }
       end
     end
   end

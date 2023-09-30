@@ -1,0 +1,7 @@
+@layer components {
+  [data-component="header"] {
+    .header-branding {
+      @apply ml-4;
+    }
+  }
+}

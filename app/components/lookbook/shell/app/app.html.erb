@@ -1,0 +1,22 @@
+<%= render component_tag do %>
+  <header class="app-header">
+    <%= header %>
+  </header>
+
+  <%= render Lookbook::PaneGroup.new do |group| %>
+    <% if sidebar? %>
+      <% group.with_pane(:sidebar, id: "app-sidebar", size: "280px") do |pane| %>
+        <!--  
+        <p><button @click="switchLayout">switch layout</button></p>
+        <p><button @click="hidePane" data-target-pane="sidebar">hide pane</button></p>
+        -->
+        <%= sidebar %>
+      <% end %>
+    <% end %>
+    
+    <% group.with_pane(:main, id: "app-main") do |pane| %>
+        <!-- <p><button @click="showPane" data-target-pane="sidebar">show pane</button></p> -->
+      <%= main %>
+    <% end %>
+  <% end %>  
+<% end %>

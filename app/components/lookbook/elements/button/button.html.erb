@@ -1,0 +1,17 @@
+<%= render component_tag(
+  x: {data: "button", "@click": on_click}
+) do %>
+  <span class="button-inner" x-ref="content">
+    <%= icon %>
+    <% if label.present? %>
+      <span class="button-label" x-ref="label">
+        <%= label %>
+      </span>
+    <% end %>
+  </span>
+  <% if dropdown? %>
+    <div x-ref="dropdown" class="hidden">
+      <%= dropdown %>
+    </div>
+  <% end %>
+<% end %>

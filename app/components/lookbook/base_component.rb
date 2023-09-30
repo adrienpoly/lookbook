@@ -105,8 +105,8 @@ module Lookbook
         @_tag_name
       end
 
-      def tag_attr(*)
-        tag_attr_names.push(*)
+      def tag_attr(*args)
+        tag_attr_names.push(*args)
       end
 
       def tag_attr_names

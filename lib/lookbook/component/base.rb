@@ -111,11 +111,11 @@ module Lookbook
         slots.map { |s| s[:content] }
       end
 
-      def set_slot(name, *, &block)
+      def set_slot(name, *args, &block)
         handler = self.class.registered_slots[name.to_sym]
         result = if handler.respond_to?(:method_defined?) && handler.method_defined?(:render_in)
           # component class
-          handler.new(*)
+          handler.new(*args)
         else
           renderable_function = handler.bind(self)
           if block
@@ -123,7 +123,7 @@ module Lookbook
               view_context.capture(*rargs, &block)
             end
           else
-            renderable_function.call(*)
+            renderable_function.call(*args)
           end
         end
 

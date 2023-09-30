@@ -1,0 +1,23 @@
+[data-component="toolbar-section"] {
+  @apply flex items-center px-2 h-full;
+
+  &[data-size="sm"] {
+    @apply text-xs;
+  }
+
+  &[data-size="md"] {
+    @apply text-sm;
+  }
+
+  &[data-divider="true"] {
+    @apply border-gray-300;
+
+    &[data-align="start"] {
+      @apply border-r;
+    }
+
+    &[data-align="end"] {
+      @apply border-l;
+    }
+  }
+}

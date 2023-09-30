@@ -1,0 +1,4 @@
+[data-component="toolbar-section-divider"] {
+  @apply w-px h-10 mx-2;
+  background: var(--lookbook-toolbar-border);
+}
