@@ -8,12 +8,13 @@ module Lookbook
 
     private
 
-    InspectorData = Struct.new(:output, :source, keyword_init: true)
+    InspectorData = Struct.new(:output, :source, :preview_url, keyword_init: true)
 
     def inspector_data
       InspectorData.new(
         output: example_html.html_safe,
-        source: example_erb.html_safe
+        source: example_erb.html_safe,
+        preview_url: "https://example.com"
       )
     end
   end

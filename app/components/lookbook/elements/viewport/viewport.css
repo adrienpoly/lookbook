@@ -1,0 +1,7 @@
+@layer components {
+  [data-component="viewport"] {
+    iframe {
+      @apply w-full h-full;
+    }
+  }
+}

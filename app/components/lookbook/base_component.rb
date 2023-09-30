@@ -4,7 +4,7 @@ module Lookbook
     include Lookbook::AlpineHelper
     include Lookbook::ComponentHelper
 
-    TAG_ATTRIBUTE_NAMES = %i[id class role data aria test_data x].freeze
+    TAG_ATTRIBUTE_NAMES = %i[id class data aria test_data x].freeze
 
     def component_name
       @_component_name ||= self.class.send(:component_name)
@@ -37,6 +37,8 @@ module Lookbook
       @tag_name ||= self.class.tag_name
     end
 
+    attr_writer :tag_name
+
     def set_tag_attr(attr_name, value = "")
       tag_attrs[attr_name] = value
     end
@@ -44,6 +46,10 @@ module Lookbook
     def set_tag_data_attr(attr_name, value = "")
       tag_attrs[:data] ||= {}
       tag_attrs[:data][attr_name] = value
+    end
+
+    def tag_attr?(attr_name)
+      tag_attrs.key?(attr_name)
     end
 
     def call
@@ -105,8 +111,8 @@ module Lookbook
         @_tag_name
       end
 
-      def tag_attr(*args)
-        tag_attr_names.push(*args)
+      def tag_attr(*attr_names)
+        tag_attr_names.push(*attr_names)
       end
 
       def tag_attr_names

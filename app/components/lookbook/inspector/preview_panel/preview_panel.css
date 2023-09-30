@@ -1,5 +1,9 @@
 @layer components {
   [data-component="panel"][data-panel-type="preview"] {
     @apply relative h-full;
+
+    [data-component="viewport"] {
+      @apply absolute inset-0 h-full w-full;
+    }
   }
 }

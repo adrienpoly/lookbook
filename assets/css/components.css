@@ -13,6 +13,7 @@
 @import "@components/elements/toolbar/toolbar.css";
 @import "@components/elements/toolbar_section/toolbar_section.css";
 @import "@components/elements/toolbar_section_divider/toolbar_section_divider.css";
+@import "@components/elements/viewport/viewport.css";
 
 @import "@components/inspector/code_panel/code_panel.css";
 @import "@components/inspector/preview_panel/preview_panel.css";

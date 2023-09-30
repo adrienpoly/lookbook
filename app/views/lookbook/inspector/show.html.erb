@@ -3,16 +3,13 @@
     <% pane.with_toolbar do |toolbar| %>
       <% toolbar.with_section do |section| %>
         <% section.with_tab_group(:inspector_main) do |group| %>
-          <% group.with_tab(:html) { "HTML" } %>
           <% group.with_tab(:preview) { "Preview" } %>
+          <% group.with_tab(:html) { "HTML" } %>
         <% end %>
       <% end %>
 
       <% toolbar.with_section(align: :end) do |section| %>
-        <% section.with_button_group(x: {
-          "@panel:register-action.document": "addAction"
-        }) do |group| %>
-        <% end %>
+        <% section.with_button_group(x: {"@panel:register-action.document": "addAction"}) %>
       <% end %>
 
       <% toolbar.with_section(align: :end, theme: :dark, divider: true) do |section| %>
@@ -20,20 +17,16 @@
           <% group.with_button(icon: :code_2) do %>
             Embed code
           <% end %>
-
           <% group.with_button(icon: :link) do %>
             Link
           <% end %>
-
         <% end %>
       <% end %>
     <% end %>
 
     <% pane.with_panel_group(:inspector_main) do |group| %>
       <% group.with_panel(:preview) do %>
-        <%= book_preview_panel do |panel| %>
-          Preview
-        <% end %>
+        <%= book_preview_panel(src: @inspector_data.preview_url) %>
       <% end %>
 
       <% group.with_panel(:html) do %>
@@ -55,10 +48,7 @@
       <% end %>
 
       <% toolbar.with_section(align: :end) do |section| %>
-        <% section.with_button_group(x: {
-          "@panel:register-action.document": "addAction"
-        }) do |group| %>
-        <% end %>
+        <% section.with_button_group(x: {"@panel:register-action.document": "addAction"}) %>
       <% end %>
 
       <% toolbar.with_section(align: :end, theme: :dark, divider: true) do |section| %>

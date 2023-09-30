@@ -1,5 +1,7 @@
 <%= book_panel(**args, x: {data: "previewPanel"}, data: {panel_type: "preview"}) do |panel| %>
-  <div class="preview-panel-content">
-    <%= content %>
-  </div>
+  <% panel.with_action(icon: :external_link, click: "toggleWrap") do %>
+    Open in new window
+  <% end %>
+  
+  <%= viewport %>
 <% end %>
