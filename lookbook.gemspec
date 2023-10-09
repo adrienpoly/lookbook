@@ -19,8 +19,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency "turbo-rails"
   spec.add_dependency "concurrent-ruby"
 
-  spec.add_dependency "vite_rails"
-
   # spec.add_dependency "css_parser"
   # spec.add_dependency "activemodel"
   # spec.add_dependency "zeitwerk", "~> 2.5"

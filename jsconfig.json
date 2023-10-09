@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@components/*": ["app/components/lookbook/*"],
+      "@assets/*": ["assets/*"],
+      "@css/*": ["assets/css/*"],
+      "@js/*": ["assets/js/*"],
+      "@helpers/*": ["assets/js/helpers/*"],
+      "@npm/*": ["node_modules/*"]
+    }
+  },
+  "exclude": ["node_modules"]
+}

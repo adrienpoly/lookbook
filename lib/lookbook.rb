@@ -1,5 +1,4 @@
 require "zeitwerk"
-require "vite_rails"
 require "lookbook/version"
 
 loader = Zeitwerk::Loader.for_gem

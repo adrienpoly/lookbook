@@ -3,9 +3,8 @@
 <head>
   <%= render "layouts/lookbook/head" %>
 
-  <%= vite_client_tag %>
-  <%= vite_javascript_tag "app" %>
-  <%= vite_stylesheet_tag "app" %>
+  <link href="<%= lookbook_asset_path("/app.css") %>" rel="stylesheet">
+  <script src="<%= lookbook_asset_path("/app.js") %>" defer></script> 
 
   <title>Lookbook</title>
 </head>

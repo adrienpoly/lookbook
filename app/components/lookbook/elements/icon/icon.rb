@@ -21,10 +21,6 @@ module Lookbook
 
     def read_svg
       File.read(svg_path).html_safe
-    rescue
-      if Rails.env.development? || Rails.env.test?
-        raise InvalidIconError, "`#{@icon_name}` is not a valid icon name"
-      end
     end
 
     def svg_path

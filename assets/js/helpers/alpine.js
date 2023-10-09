@@ -20,4 +20,15 @@ function setData(el, newData) {
   return data ? Object.assign(data, newData) : null;
 }
 
-export { getComponent, getData, setData };
+function registerComponents(entries) {
+  for (const key in entries) {
+    const entry = entries[key];
+    if (entry.__esModule === true && "default" in entry) {
+      Alpine.data(entry.default.name, entry.default);
+    } else {
+      registerComponents(entry);
+    }
+  }
+}
+
+export { getComponent, getData, setData, registerComponents };

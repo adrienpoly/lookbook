@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+npm run icons:update
+LOOKBOOK_ENV=production npm run build

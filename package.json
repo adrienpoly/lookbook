@@ -3,7 +3,44 @@
   "version": "3.0.0",
   "description": "A native development UI for ViewComponent",
   "scripts": {
-    "icons:update": "node lib/scripts/copy_icons.mjs"
+    "icons:update": "node lib/scripts/copy_icons.mjs",
+    "watch": "npm run parcel:clean && concurrently npm:parcel:watch",
+    "build": "npm run parcel:clean && npm run parcel:build",
+    "parcel:clean": "rm -rf .parcel-cache",
+    "parcel:watch": "parcel watch -p 5111 --target app-development",
+    "parcel:build": "parcel build --no-cache --target app-production"
+  },
+  "targets": {
+    "app-development": {
+      "source": [
+        "./assets/entrypoints/app.js",
+        "./assets/entrypoints/app.css"
+      ],
+      "distDir": "./public/lookbook-dev",
+      "publicUrl": "/lookbook-dev",
+      "outputFormat": "global",
+      "context": "browser",
+      "sourceMap": false
+    },
+    "app-production": {
+      "source": [
+        "./assets/entrypoints/app.js",
+        "./assets/entrypoints/app.css"
+      ],
+      "distDir": "./public/lookbook-assets",
+      "publicUrl": "/lookbook-assets",
+      "outputFormat": "global",
+      "context": "browser",
+      "sourceMap": true
+    }
+  },
+  "alias": {
+    "@components/*": "./app/components/lookbook/$1",
+    "@assets/*": "./assets/$1",
+    "@css/*": "./assets/css/$1",
+    "@js/*": "./assets/js/$1",
+    "@helpers/*": "./assets/js/helpers/$1",
+    "@npm/*": "./node_modules/$1"
   },
   "author": "Mark Perkins",
   "license": "MIT",
@@ -20,39 +57,20 @@
     "tippy.js": "^6.3.7"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.16",
+    "@parcel/resolver-glob": "^2.9.3",
+    "concurrently": "^8.2.1",
     "eslint": "^8.40.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.25.2",
     "husky": "^8.0.2",
     "lint-staged": "^13.2.2",
+    "parcel": "^2.9.3",
+    "postcss": "^8.4.23",
+    "postcss-import": "^15.0.0",
     "postcss-import-ext-glob": "^2.1.1",
     "prettier": "2.8.8",
-    "release-it": "^16.1.5",
-    "svgo": "^3.0.2",
-    "vite": "^4.4.9",
-    "vite-plugin-full-reload": "^1.0.5",
-    "vite-plugin-ruby": "^3.2.2",
-    "vite-plugin-static-copy": "^0.17.0"
+    "svgo": "^3.0.2"
   },
-  "lint-staged": {},
-  "release-it": {
-    "git": {
-      "commitMessage": "release ${version}"
-    },
-    "github": {
-      "release": true,
-      "releaseName": "Release ${version}"
-    },
-    "npm": {
-      "publish": false
-    },
-    "hooks": {
-      "before:init": [],
-      "after:bump": [],
-      "after:version:bump": "",
-      "after:release": ""
-    }
-  }
+  "lint-staged": {}
 }

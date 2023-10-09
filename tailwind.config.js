@@ -4,9 +4,6 @@ module.exports = {
     {
       pattern: /tippy-.+/,
     },
-    {
-      pattern: /cm-.+/,
-    },
   ],
   theme: {
     extend: {},

@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
 npm run icons:update
-bin/vite dev
+LOOKBOOK_ENV=development npm run watch
