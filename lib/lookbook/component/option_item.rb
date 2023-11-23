@@ -1,6 +1,6 @@
 module Lookbook
   module Component
-    module Item
+    module OptionItem
       extend ActiveSupport::Concern
 
       def alias

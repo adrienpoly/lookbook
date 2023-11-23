@@ -1,87 +1,76 @@
-<%= render Lookbook::PaneGroup.new(layout: :rows) do |group| %>
-  <% group.with_pane(:inspector_main) do |pane| %>
-    <% pane.with_toolbar do |toolbar| %>
-      <% toolbar.with_section do |section| %>
-        <% section.with_tab_group(:inspector_main) do |group| %>
-          <% group.with_tab(:preview) { "Preview" } %>
-          <% group.with_tab(:html) { "HTML" } %>
-        <% end %>
-      <% end %>
+<%=
+  render Lookbook::PaneGroup.new(layout: :rows) do |group|
+    group.with_pane(:inspector_main) do |pane|
+      pane.with_toolbar do |toolbar|
+        toolbar.with_section do |section|
+          section.with_tab_group(:inspector_main) do |group|
+            group.with_tab(:preview) { "Preview" }
+            group.with_tab(:html) { "HTML" }
+          end
+        end
 
-      <% toolbar.with_section(align: :end) do |section| %>
-        <% section.with_button_group(x: {"@panel:register-action.document": "addAction"}) %>
-      <% end %>
+        toolbar.with_section(align: :end) do |section|
+          section.with_button_group(x: {"@panel:register-action.document": "addAction"})
+        end
 
-      <% toolbar.with_section(align: :end, theme: :dark, divider: true) do |section| %>
-        <% section.with_button_group do |group| %>
-          <% group.with_button(icon: :code_2) do %>
-            Embed code
-          <% end %>
-          <% group.with_button(icon: :link) do %>
-            Link
-          <% end %>
-        <% end %>
-      <% end %>
-    <% end %>
+        toolbar.with_section(align: :end, theme: :dark, divider: true) do |section|
+          section.with_button_group do |group|
+            group.with_button(icon: :code_2) { "Embed code" }
+            group.with_button(icon: :link) { "Link" }
+          end
+        end
+      end
 
-    <% pane.with_panel_group(:inspector_main) do |group| %>
-      <% group.with_panel(:preview) do %>
-        <%= book_preview_panel(src: @inspector_data.preview_url) %>
-      <% end %>
+      pane.with_panel_group(:inspector_main) do |group|
+        group.with_panel(:preview) do
+          book_preview_panel(src: @inspector_data.preview_url)
+        end
 
-      <% group.with_panel(:html) do %>
-        <%= book_code_panel(lang: :html) do |panel| %>
-          <%= @inspector_data.output %>
-        <% end %>
-      <% end %>
-    <% end %>
-  <% end %>
+        group.with_panel(:html) do
+          book_code_panel(lang: :html) do |panel|
+            @inspector_data.output
+          end
+        end
+      end
+    end
   
-  <% group.with_pane(:inspector_drawer, size: "0.5fr") do |pane| %>
-    <% pane.with_toolbar do |toolbar| %>
-      <% toolbar.with_section do |section| %>
-        <% section.with_tab_group(:inspector_drawer) do |group| %>
-          <% group.with_tab(:source) { "Source" } %>
-          <% group.with_tab(:notes) { "Notes" } %>
-          <% group.with_tab(:params) { "Params" } %>
-        <% end %>
-      <% end %>
+    group.with_pane(:inspector_drawer, size: "0.5fr") do |pane|
+      pane.with_toolbar do |toolbar|
+        toolbar.with_section do |section|
+          section.with_tab_group(:inspector_drawer) do |group|
+            group.with_tab(:source) { "Source" }
+            group.with_tab(:notes) { "Notes" }
+            group.with_tab(:params) { "Params" }
+          end
+        end
 
-      <% toolbar.with_section(align: :end) do |section| %>
-        <% section.with_button_group(x: {"@panel:register-action.document": "addAction"}) %>
-      <% end %>
+        toolbar.with_section(align: :end) do |section|
+          section.with_button_group(x: {"@panel:register-action.document": "addAction"})
+        end
 
-      <% toolbar.with_section(align: :end, theme: :dark, divider: true) do |section| %>
-        <% section.with_button_group do |group| %>
-          <% group.with_button(icon: :panel_right_close) do %>
-            Dock on right
-          <% end %>   
-            <% group.with_button(icon: :x) do %>
-            Close drawer
-          <% end %>
-        <% end %>
-      <% end %>
-    <% end %>  
+        toolbar.with_section(align: :end, theme: :dark, divider: true) do |section|
+          section.with_button_group do |group|
+            group.with_button(icon: :panel_right_close) { "Dock on right" }
+            group.with_button(icon: :x) { "Close drawer" }
+          end
+        end
+      end
 
-    <% pane.with_panel_group(:inspector_drawer) do |group| %>
-      <% group.with_panel(:source) do %>
-        <%= book_code_panel do |panel| %>
-          <% panel.with_code(lang: :erb) do %>
-            <%= @inspector_data.source %>
-          <% end %>
-        <% end %>
-      <% end %>
+      pane.with_panel_group(:inspector_drawer) do |group|
+        group.with_panel(:source) do
+          book_code_panel do |panel|
+            panel.with_code(lang: :erb) do
+              @inspector_data.source
+            end
+          end
+        end
 
-      <% group.with_panel(:notes) do %>
-        <%= book_prose_panel do |panel| %>
-          Notes
-        <% end %>
-      <% end %>
+        group.with_panel(:notes) do
+          book_prose_panel { "Prose" }
+        end
 
-      <% group.with_panel(:params) do %>
-        Params
-      <% end %>
-
-    <% end %>     
-  <% end %>
-<% end %>  
+        group.with_panel(:params) { "Params" }
+      end
+    end
+  end
+%> 

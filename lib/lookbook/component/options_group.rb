@@ -1,7 +1,7 @@
 module Lookbook
   module Component
     class OptionsGroup
-      include Item
+      include OptionItem
 
       attr_accessor :shorthand
       attr_reader :name, :items

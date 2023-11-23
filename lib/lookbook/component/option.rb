@@ -1,7 +1,7 @@
 module Lookbook
   module Component
     class Option
-      include Item
+      include OptionItem
 
       attr_accessor :default
       attr_reader :from, :name

@@ -12,7 +12,7 @@
   <%= render Lookbook::App.new do |app| %>
     <% app.with_header do |header| %>
       <% header.with_branding do %>
-        Lookbook
+        <%= @config.project_name %>
       <% end %>
     <% end %>
 
